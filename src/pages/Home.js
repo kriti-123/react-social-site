@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import Loader from '../component/Loader'
 import { useState,useEffect } from 'react';
 import { getPosts } from '../api';
+import { Link } from 'react-router-dom';
 
  export const Home = () => {
   const [posts,setPosts] = useState([]);
@@ -35,7 +36,11 @@ import { getPosts } from '../api';
                 alt="user-pic"
               />
               <div>
-                <span className={styles.postAuthor}>{post.user.name}</span>
+                <Link to={`/user/${post.user._id}`}
+                  state={{user:post.user}}
+                  className={styles.postAuthor}>
+                  {post.user.name}
+                 </Link>
                 <span className={styles.postTime}>a minute ago</span>
               </div>
             </div>
@@ -83,5 +88,8 @@ Home.propTypes={
   posts:propTypes.array.isRequired
 }
 // export default Home;
+
+
+
 
 
